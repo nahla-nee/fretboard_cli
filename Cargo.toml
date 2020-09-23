@@ -5,6 +5,8 @@ authors = ["zee-mzha <zee.mzha@gmail.com>"]
 edition = "2018"
 description = "A command line program to help with memorizing the notes on a fretted instrument"
 repository = "https://github.com/zee-mzha/fretboard_cli"
+license = "LGPL-2.1-only"
+keywords = ["fretted instrument", "fret", "frets", "instrument"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
