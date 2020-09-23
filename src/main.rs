@@ -2,12 +2,15 @@ mod note;
 mod fretboard;
 
 use std::{
-    io,
+    io::{self, Write},
     convert::TryFrom,
     env
 };
 
-use termion::color;
+use crossterm::{
+    execute,
+    style::{Color, SetForegroundColor, ResetColor, Print}
+};
 use thiserror::Error;
 
 use note::Note;
@@ -64,15 +67,21 @@ fn main() {
                     match uin {
                         UserInput::Note(answer) => {
                             if answer == note {
-                                println!("{}Correct!{}",
-                                         color::Fg(color::Green),
-                                         color::Fg(color::Reset));
+                                let _ = execute!(
+                                    io::stdout(),
+                                    SetForegroundColor(Color::Green),
+                                    Print("Correct!\n"),
+                                    ResetColor
+                                );
                                 break
                             }
                             else {
-                                println!("{}Incorrect!{}",
-                                         color::Fg(color::Red),
-                                         color::Fg(color::Reset));
+                                let _ = execute!(
+                                    io::stdout(),
+                                    SetForegroundColor(Color::Red),
+                                    Print("Incorrect!\n"),
+                                    ResetColor
+                                );
                             }
                         }
                         UserInput::Exit => {
